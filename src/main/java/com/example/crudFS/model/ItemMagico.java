@@ -1,5 +1,6 @@
 package com.example.crudFS.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,6 +18,7 @@ public class ItemMagico {
     private int forca;
     private int defesa;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "personagem_id")
     private Personagem personagem;
@@ -31,7 +33,6 @@ public class ItemMagico {
         this.defesa = defesa;
     }
 
-
     @PrePersist
     @PreUpdate
     private void validarAtributos() {
@@ -44,6 +45,7 @@ public class ItemMagico {
             }
         }
     }
+
 
 
     public Long getId() {
@@ -80,4 +82,3 @@ public class ItemMagico {
         this.personagem = personagem;
     }
 }
-

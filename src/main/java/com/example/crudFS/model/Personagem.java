@@ -1,5 +1,6 @@
 package com.example.crudFS.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +22,10 @@ public class Personagem {
     private int forca;
     private int defesa;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "personagem", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemMagico> itens = new ArrayList<>();
+
 
     public Personagem() {
     }
@@ -95,4 +98,3 @@ public class Personagem {
         this.itens = itens;
     }
 }
-
